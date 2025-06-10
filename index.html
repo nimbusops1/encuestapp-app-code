@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Encuestapp - Formularios Personalizados Online</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos CSS para un diseño moderno y atractivo */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            letter-spacing: 2px;
+        }
+        nav {
+            margin-top: 15px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #1abc9c;
+        }
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://via.placeholder.com/1500x800/2980b9/ffffff?text=Tu+Imagen+Principal+Aqui'); /* Reemplaza con tu imagen */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 100px 20px;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero h2 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+        .hero p {
+            font-size: 1.3em;
+            max-width: 800px;
+            margin-bottom: 30px;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: #1abc9c;
+            color: #fff;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: 700;
+            font-size: 1.2em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        .cta-button:hover {
+            background-color: #16a085;
+            transform: translateY(-3px);
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+            text-align: center;
+        }
+        .feature-item {
+            padding: 30px;
+            border-radius: 8px;
+            background-color: #ecf0f1;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        .feature-item h3 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+        .feature-item p {
+            font-size: 1.05em;
+            color: #555;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+        /* JavaScript dinámico */
+        .animated-text {
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInSlideUp 1s forwards;
+        }
+
+        @keyframes fadeInSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Encuestapp</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="beneficios.html">Beneficios</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2 class="animated-text">Crea Formularios Online que Impulsan tus Ideas</h2>
+            <p class="animated-text" style="animation-delay: 0.5s;">Diseña encuestas, registros y formularios personalizados de manera sencilla e intuitiva. Recopila información valiosa al instante.</p>
+            <a href="servicios.html" class="cta-button animated-text" style="animation-delay: 1s;">Empieza Ahora</a>
+        </section>
+
+        <section class="container">
+            <h2>¿Por qué elegir Encuestapp?</h2>
+            <div class="features">
+                <div class="feature-item">
+                    <h3>Personalización Total</h3>
+                    <p>Adapta cada formulario a tu marca y necesidades. Desde el diseño hasta la lógica de preguntas, tienes el control.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Fácil de Usar</h3>
+                    <p>Nuestra interfaz intuitiva te permite crear formularios complejos sin necesidad de conocimientos técnicos.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Análisis de Datos</h3>
+                    <p>Obtén insights valiosos con nuestras herramientas de análisis integradas. Toma decisiones informadas.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Seguridad y Confiabilidad</h3>
+                    <p>Tus datos están protegidos con las mejores prácticas de seguridad. Confía en Encuestapp para tu información.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Encuestapp. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        // JavaScript para añadir dinamismo
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.animated-text');
+            animatedElements.forEach(element => {
+                element.style.opacity = 1; // Hacerlos visibles después de la animación
+                element.style.transform = 'translateY(0)'; // Moverlos a su posición final
+            });
+
+            // Ejemplo de un efecto al hacer scroll
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.style.backgroundColor = '#1a2b3c'; // Cambia el color del header al hacer scroll
+                    header.style.padding = '10px 0';
+                } else {
+                    header.style.backgroundColor = '#2c3e50';
+                    header.style.padding = '20px 0';
+                }
+            });
+
+            // Un pequeño efecto de bienvenida con un alert (solo para demostración)
+            // setTimeout(() => {
+            //     alert('¡Bienvenido a Encuestapp! Explora nuestras soluciones.');
+            // }, 2000);
+        });
+    </script>
+</body>
+</html>

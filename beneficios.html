@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beneficios de Encuestapp</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos CSS compartidos con index.html (puedes unificar en un solo archivo CSS) */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f6;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #2c3e50;
+            color: #fff;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.8em;
+            letter-spacing: 2px;
+        }
+        nav {
+            margin-top: 15px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: color 0.3s ease;
+        }
+        nav ul li a:hover {
+            color: #1abc9c;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+        }
+        .benefit-list {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .benefit-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            background-color: #ecf0f1;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .benefit-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        .benefit-icon {
+            font-size: 2.5em;
+            color: #1abc9c;
+            min-width: 40px; /* Para asegurar el espaciado */
+        }
+        .benefit-content h3 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        .benefit-content p {
+            font-size: 1.05em;
+            color: #555;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 50px;
+            font-size: 0.9em;
+        }
+
+        /* JavaScript dinámico */
+        .slide-in {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideIn 0.8s forwards;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Encuestapp</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="beneficios.html">Beneficios</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <h2 class="slide-in">Los Beneficios de Elegir Encuestapp</h2>
+        <div class="benefit-list">
+            <div class="benefit-item slide-in" style="animation-delay: 0.2s;">
+                <span class="benefit-icon">&#10003;</span> <div class="benefit-content">
+                    <h3>Ahorro de Tiempo</h3>
+                    <p>Crea y despliega formularios en minutos, liberando tiempo para que te enfoques en lo que realmente importa.</p>
+                </div>
+            </div>
+            <div class="benefit-item slide-in" style="animation-delay: 0.4s;">
+                <span class="benefit-icon">&#128200;</span> <div class="benefit-content">
+                    <h3>Datos Accionables</h3>
+                    <p>Obtén datos limpios y organizados, listos para ser analizados y ayudarte a tomar decisiones estratégicas.</p>
+                </div>
+            </div>
+            <div class="benefit-item slide-in" style="animation-delay: 0.6s;">
+                <span class="benefit-icon">&#128172;</span> <div class="benefit-content">
+                    <h3>Mejora la Comunicación</h3>
+                    <p>Facilita la recopilación de feedback y la comunicación con tus clientes, empleados o audiencia.</p>
+                </div>
+            </div>
+            <div class="benefit-item slide-in" style="animation-delay: 0.8s;">
+                <span class="benefit-icon">&#128274;</span> <div class="benefit-content">
+                    <h3>Seguridad Garantizada</h3>
+                    <p>Protegemos tu información y la de tus usuarios con los más altos estándares de seguridad.</p>
+                </div>
+            </div>
+            <div class="benefit-item slide-in" style="animation-delay: 1s;">
+                <span class="benefit-icon">&#128187;</span> <div class="benefit-content">
+                    <h3>Accesibilidad Multiplataforma</h3>
+                    <p>Tus formularios se verán y funcionarán perfectamente en cualquier dispositivo, ya sea móvil o de escritorio.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Encuestapp. Todos los derechos reservados.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const benefitItems = document.querySelectorAll('.benefit-item');
+            benefitItems.forEach(item => {
+                item.style.opacity = 1; // Asegura que sean visibles después de la animación
+                item.style.transform = 'translateX(0)';
+            });
+        });
+    </script>
+</body>
+</html>
