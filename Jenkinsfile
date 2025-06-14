@@ -49,7 +49,7 @@ pipeline {
                 // Clona el repositorio desde GitHub.
                 // Asegúrate de que la rama sea la correcta (es "main", no master).
                 // El ID 'github-token' es la credencial que Jenkins usa para acceder a tu repositorio.
-                git branch: 'main', credentialsId: 'github-ssh-key-cod', url: 'https://github.com/nimbusops1/pipeline_prueba.git'
+                git branch: 'main', credentialsId: 'github-ssh-key-cod', url: 'git@github.com:nimbusops1/pipeline_prueba.git'
             }
         }
 
