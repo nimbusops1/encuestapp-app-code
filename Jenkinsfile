@@ -8,7 +8,7 @@ pipeline {
     environment {
         // URL completa de tu registro Harbor (sin http/https)
         // EJEMPLO: 'harbor.yourcompany.com' o 'mi-harbor.local'
-        HARBOR_REGISTRY =  'reg.encuestapp.com' //'tu-dominio-harbor.com' // ¡CÁMBIALO! //--> tengo la direccion 127.0.0.1:82
+        HARBOR_REGISTRY =  '127.0.0.1:82' //'tu-dominio-harbor.com' // ¡CÁMBIALO! //--> tengo la direccion 127.0.0.1:82
 
         // Nombre del proyecto en Harbor donde se almacenará la imagen
         // EJEMPLO: 'my-app-project' o 'encuestapp'
