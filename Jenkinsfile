@@ -98,6 +98,7 @@ pipeline {
                                                     passwordVariable: 'HARBOR_PASSWORD',
                                                     usernameVariable: 'HARBOR_USERNAME')]) {
                         // Autentica con Harbor
+                        sh "docker logout ${env.HARBOR_REGISTRY} || true"
                         sh "echo ${HARBOR_PASSWORD} | docker login ${env.HARBOR_REGISTRY} --username ${HARBOR_USERNAME} --password-stdin"
                         // Empuja la imagen al registro de Harbor
                         sh "docker push ${env.FULL_IMAGE_NAME}"
