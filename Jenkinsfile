@@ -21,7 +21,7 @@ pipeline {
         APP_NAME = 'encuestapp'
 
         ///////// K8S //////
-        environment {
+    
         // ... (tus variables existentes de Harbor y APP_NAME) ...
 
         // --- Variables para el Repositorio de Manifiestos de Kubernetes ---
@@ -38,7 +38,7 @@ pipeline {
         // La ruta relativa al archivo deployment.yaml dentro de tu repositorio de manifiestos
         // EJEMPLO: 'k8s/deployment.yaml' si tienes un directorio 'k8s'
         KUBERNETES_DEPLOYMENT_FILE_PATH = 'k8s/deployment.yaml' // ¡CÁMBIALO!
-    }
+    
     }
 
     // Define las etapas de tu pipeline
@@ -173,21 +173,21 @@ pipeline {
                 }
             }
         }
-
+    }
     // Define acciones a realizar después de que el pipeline finaliza
     post {
-        // Siempre limpia el workspace del Job después de la ejecución
+         // Siempre limpia el workspace del Job después de la ejecución
         always {
-            cleanWs()
+                cleanWs()
         }
-        // Muestra un mensaje si el pipeline falla
+            // Muestra un mensaje si el pipeline falla
         failure {
-            echo '¡El Pipeline Falló! Revisa la Salida de la Consola para detalles.'
+                echo '¡El Pipeline Falló! Revisa la Salida de la Consola para detalles.'
         }
-        // Muestra un mensaje si el pipeline es exitoso
+            // Muestra un mensaje si el pipeline es exitoso
         success {
-            echo '¡El Pipeline se completó exitosamente!'
+                echo '¡El Pipeline se completó exitosamente!'
         }
     }
-}
+
 }
