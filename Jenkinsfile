@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        HARBOR_REGISTRY = '127.0.0.1:82'
+        HARBOR_REGISTRY = '192.168.49.1'
         HARBOR_PROJECT = 'encuestapp-prueba'
         HARBOR_CREDENTIALS_ID = 'harbor-robot-account'
         APP_NAME = 'encuestapp'
