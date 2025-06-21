@@ -7,7 +7,7 @@ pipeline {
         HARBOR_CREDENTIALS_ID = 'harbor-robot-account'
         APP_NAME = 'encuestapp'
 
-        KUBERNETES_MANIFESTS_REPO_URL = 'https://github.com/nimbusops1/k8s.git'
+        KUBERNETES_MANIFESTS_REPO_URL = 'https://github.com/nimbusops1/encuestapp-k8s-infra.git'
         KUBERNETES_MANIFESTS_REPO_CREDENTIALS_ID = 'github-token-k8s'
         KUBERNETES_MANIFESTS_BRANCH = 'main'
     }
@@ -95,7 +95,7 @@ pipeline {
 
                         withCredentials([usernamePassword(credentialsId: 'github-token-k8s', usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_TOKEN')]) {
                             sh """
-                                git remote set-url origin https://\$GITHUB_USER:\$GITHUB_TOKEN@github.com/nimbusops1/k8s.git
+                                git remote set-url origin https://\$GITHUB_USER:\$GITHUB_TOKEN@github.com/nimbusops1/encuestapp-k8s-infra.git
                                 git push origin main
                             """
                         }
