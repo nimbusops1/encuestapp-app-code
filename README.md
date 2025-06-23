@@ -1,14 +1,64 @@
+ # EncuestApp - Código Fuente
+
+Este repositorio contiene el código fuente de la aplicación **EncuestApp**, 
+junto con los archivos necesarios para su construcción y despliegue continuo mediante Jenkins y Docker.
+
+---
+
+# Estructura del Repositorio
+├── src/ # Código fuente de la aplicación
+├── Dockerfile # Imagen Docker para la app
+├── Jenkinsfile # Pipeline CI/CD para construir y desplegar
+└── README.md # Este archivo
+
+
+---
+
+# Tecnologías Utilizadas
+
+-  Docker
+-  Jenkins
+-  Kustomize (en otro repo: `encuestapp-k8s-infra`)
+-  Harbor (como registro de imágenes)
+-  Kubernetes (Minikube para desarrollo)
+
+---
+
+# Construcción de la Imagen
+
+La imagen se construye automáticamente desde el `Dockerfile` con Jenkins cuando se hace push al branch `main`.
+
+```bash
+docker build -t 192.168.49.1/encuestapp-prueba/encuestapp:<TAG> .
+....
+````
+
+Jenkinsfile
+
+El archivo Jenkinsfile incluye:
+
+   Checkout del código fuente
+
+   Detección del entorno de despliegue ([deploy-dev], [deploy-stg], [deploy-prod][approved])
+
+   Build de la imagen Docker
+
+   Push a Harbor
  
-prueba 2 para jenkins 
-prueba 3 para jenkins 
+   Modificación del archivo patch-deployment.yaml en el repo de manifiestos encuestapp-k8s-infra
 
-prueba 4 por lilia
-prueba 5 por emi (probando si el webhook caduca)
+   Trigger automático de despliegue vía ArgoCD
 
-prueba 6 nuevo webohook
+Despliegue Automático
 
-prueba 7 test funcional de todos los procesos antes de integrar argocd
+El despliegue es gestionado por ArgoCD, el cual monitorea el repositorio de manifiestos Kubernetes (encuestapp-k8s-infra), el cual se actualiza automáticamente desde este pipeline.
 
-prueba 8 -palabras claves
+Commits especiales
 
-prueba 9 -cambio de url-name
+Para desplegar, se requiere agregar etiquetas en el mensaje de commit:
+
+   "[deploy-dev]" → despliega en entorno de desarrollo
+
+   "[deploy-stg]" → despliega en entorno de staging
+
+   "[deploy-prod][approved]" → despliega en producción (solo si está aprobado)
