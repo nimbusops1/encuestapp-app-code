@@ -86,7 +86,13 @@ pipeline {
 
                         // MODIFICADO: Reemplaza REPLACEME por el tag real
                         //sh "sed -i 's|REPLACEME|${env.IMAGE_TAG}|g' ${patchPath}"  // AGREGADO
-                        sed -i "s|image: .*/encuestapp:.*|image: $IMAGE_NAME:$IMAGE_TAG|g" "$PATCH_FILE"
+                        //sed -i "s|image: .*/encuestapp:.*|image: $IMAGE_NAME:$IMAGE_TAG|g" "$PATCH_FILE"
+                        sh """
+                            sed -i 's|image: .*/encuestapp:.*|image: ${env.IMAGE_NAME}:${env.IMAGE_TAG}|g' ${patchPath}
+                        """
+
+
+
                         
                         sh "git config user.email 'jenkins@yourcompany.com'"
                         sh "git config user.name 'Jenkins CI Robot'"
