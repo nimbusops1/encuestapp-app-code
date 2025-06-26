@@ -87,8 +87,10 @@ pipeline {
                         // MODIFICADO: Reemplaza REPLACEME por el tag real
                         //sh "sed -i 's|REPLACEME|${env.IMAGE_TAG}|g' ${patchPath}"  // AGREGADO
                         //sed -i "s|image: .*/encuestapp:.*|image: $IMAGE_NAME:$IMAGE_TAG|g" "$PATCH_FILE"
+                        echo "🔧 Actualizando patch con imagen: ${env.FULL_IMAGE_NAME}"
+
                         sh """
-                            sed -i 's|image: .*/encuestapp:.*|image: ${env.IMAGE_NAME}:${env.IMAGE_TAG}|g' ${patchPath}
+                            sed -i 's|image: .*/encuestapp:.*|image: ${env.FULL_IMAGE_NAME}|g' ${patchPath}
                         """
 
 
