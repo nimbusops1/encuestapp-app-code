@@ -90,9 +90,11 @@ pipeline {
 
                         echo "🔧 Actualizando patch con imagen: ${env.FULL_IMAGE_NAME}"
 
-                        sh """
-                            sed -i 's|image: .*encuestapp:.*|image: ${env.FULL_IMAGE_NAME}|g' ${patchPath}
-                        """
+                        //sh """
+                          //  sed -i 's|image: .*encuestapp:.*|image: ${env.FULL_IMAGE_NAME}|g' ${patchPath}
+                        //"""
+                        sed -i 's|image: .*|image: ${env.FULL_IMAGE_NAME}|g' ${patchPath}
+
 
                         sh "git config user.email 'jenkins@yourcompany.com'"
                         sh "git config user.name 'Jenkins CI Robot'"
