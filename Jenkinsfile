@@ -12,7 +12,7 @@ pipeline {
         KUBERNETES_MANIFESTS_BRANCH = 'main'
 
         IMAGE_NAME = 'nimbus2025/encuestapp'
-        // ❌ Eliminamos FULL_IMAGE_NAME aquí para definirlo dinámicamente luego
+        // ❌ NO definimos FULL_IMAGE_NAME aquí
     }
 
     stages {
@@ -59,7 +59,7 @@ pipeline {
                     env.IMAGE_TAG = "${env.TARGET_ENV}-${commitSha}"
                     env.FULL_IMAGE_NAME = "${env.HARBOR_REGISTRY}/${env.HARBOR_PROJECT}/${env.APP_NAME}:${env.IMAGE_TAG}"
 
-                    echo "📦 Construyendo imagen: ${env.FULL_IMAGE_NAME}"
+                    echo "🛠️ Construyendo imagen: ${env.FULL_IMAGE_NAME}"
                     sh "docker build -t ${env.FULL_IMAGE_NAME} ."
                 }
             }
@@ -82,15 +82,16 @@ pipeline {
             steps {
                 script {
                     def patchPath = "overlays/${env.TARGET_ENV}/patch-deployment.yaml"
-                    echo "🔧 Actualizando patch con imagen: ${env.FULL_IMAGE_NAME}"
 
                     dir('kubernetes-manifests-repo-checkout') {
-                        git branch: env.KUBERNETES_MANIFESTS_BRANCH,
-                            credentialsId: env.KUBERNETES_MANIFESTS_REPO_CREDENTIALS_ID,
-                            url: env.KUBERNETES_MANIFESTS_REPO_URL
+                        git branch: "${env.KUBERNETES_MANIFESTS_BRANCH}",
+                            credentialsId: "${env.KUBERNETES_MANIFESTS_REPO_CREDENTIALS_ID}",
+                            url: "${env.KUBERNETES_MANIFESTS_REPO_URL}"
+
+                        echo "🔧 Actualizando patch con imagen: ${env.FULL_IMAGE_NAME}"
 
                         sh """
-                            sed -i 's|image: .*/encuestapp:.*|image: ${env.FULL_IMAGE_NAME}|g' ${patchPath}
+                            sed -i 's|image: .*encuestapp:.*|image: ${env.FULL_IMAGE_NAME}|g' ${patchPath}
                         """
 
                         sh "git config user.email 'jenkins@yourcompany.com'"
@@ -99,9 +100,7 @@ pipeline {
                         sh "git add ${patchPath}"
                         sh "git commit -m '[Jenkins CI] Patch image tag to ${env.IMAGE_TAG} for ${env.TARGET_ENV}' || true"
 
-                        withCredentials([usernamePassword(credentialsId: env.KUBERNETES_MANIFESTS_REPO_CREDENTIALS_ID,
-                                                          usernameVariable: 'GITHUB_USER',
-                                                          passwordVariable: 'GITHUB_TOKEN')]) {
+                        withCredentials([usernamePassword(credentialsId: env.KUBERNETES_MANIFESTS_REPO_CREDENTIALS_ID, usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_TOKEN')]) {
                             sh """
                                 git remote set-url origin https://\$GITHUB_USER:\$GITHUB_TOKEN@github.com/nimbusops1/encuestapp-k8s-infra.git
                                 git push origin ${env.KUBERNETES_MANIFESTS_BRANCH}
