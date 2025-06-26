@@ -79,39 +79,37 @@ pipeline {
         }
 
         stage('Update Kustomize Patch') {
-            steps {
-                script {
-                    def patchPath = "overlays/${env.TARGET_ENV}/patch-deployment.yaml"
+    steps {
+        script {
+            def patchPath = "overlays/${env.TARGET_ENV}/patch-deployment.yaml"
 
-                    dir('kubernetes-manifests-repo-checkout') {
-                        git branch: "${env.KUBERNETES_MANIFESTS_BRANCH}",
-                            credentialsId: "${env.KUBERNETES_MANIFESTS_REPO_CREDENTIALS_ID}",
-                            url: "${env.KUBERNETES_MANIFESTS_REPO_URL}"
+            dir('kubernetes-manifests-repo-checkout') {
+                git branch: "${env.KUBERNETES_MANIFESTS_BRANCH}",
+                    credentialsId: "${env.KUBERNETES_MANIFESTS_REPO_CREDENTIALS_ID}",
+                    url: "${env.KUBERNETES_MANIFESTS_REPO_URL}"
 
-                        echo "🔧 Actualizando patch con imagen: ${env.FULL_IMAGE_NAME}"
+                echo "🔧 Actualizando patch con imagen: ${env.FULL_IMAGE_NAME}"
 
-                        //sh """
-                          //  sed -i 's|image: .*encuestapp:.*|image: ${env.FULL_IMAGE_NAME}|g' ${patchPath}
-                        //"""
-                        sed -i 's|image: .*|image: ${env.FULL_IMAGE_NAME}|g' ${patchPath}
+                sh """
+                    sed -i "s|image: .*|image: ${env.FULL_IMAGE_NAME}|g" ${patchPath}
+                """
 
+                sh "git config user.email 'jenkins@yourcompany.com'"
+                sh "git config user.name 'Jenkins CI Robot'"
 
-                        sh "git config user.email 'jenkins@yourcompany.com'"
-                        sh "git config user.name 'Jenkins CI Robot'"
+                sh "git add ${patchPath}"
+                sh "git commit -m '[Jenkins CI] Patch image tag to ${env.IMAGE_TAG} for ${env.TARGET_ENV}' || true"
 
-                        sh "git add ${patchPath}"
-                        sh "git commit -m '[Jenkins CI] Patch image tag to ${env.IMAGE_TAG} for ${env.TARGET_ENV}' || true"
-
-                        withCredentials([usernamePassword(credentialsId: env.KUBERNETES_MANIFESTS_REPO_CREDENTIALS_ID, usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_TOKEN')]) {
-                            sh """
-                                git remote set-url origin https://\$GITHUB_USER:\$GITHUB_TOKEN@github.com/nimbusops1/encuestapp-k8s-infra.git
-                                git push origin ${env.KUBERNETES_MANIFESTS_BRANCH}
-                            """
-                        }
-                    }
+                withCredentials([usernamePassword(credentialsId: env.KUBERNETES_MANIFESTS_REPO_CREDENTIALS_ID, usernameVariable: 'GITHUB_USER', passwordVariable: 'GITHUB_TOKEN')]) {
+                    sh """
+                        git remote set-url origin https://\$GITHUB_USER:\$GITHUB_TOKEN@github.com/nimbusops1/encuestapp-k8s-infra.git
+                        git push origin ${env.KUBERNETES_MANIFESTS_BRANCH}
+                    """
                 }
             }
         }
+    }
+}
     }
 
     post {
