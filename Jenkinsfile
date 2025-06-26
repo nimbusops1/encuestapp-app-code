@@ -85,8 +85,9 @@ pipeline {
                             url: "${env.KUBERNETES_MANIFESTS_REPO_URL}"
 
                         // MODIFICADO: Reemplaza REPLACEME por el tag real
-                        sh "sed -i 's|REPLACEME|${env.IMAGE_TAG}|g' ${patchPath}"  // AGREGADO
-
+                        //sh "sed -i 's|REPLACEME|${env.IMAGE_TAG}|g' ${patchPath}"  // AGREGADO
+                        sed -i "s|image: .*/encuestapp:.*|image: $IMAGE_NAME:$IMAGE_TAG|g" "$PATCH_FILE"
+                        
                         sh "git config user.email 'jenkins@yourcompany.com'"
                         sh "git config user.name 'Jenkins CI Robot'"
 
