@@ -62,3 +62,8 @@ Para desplegar, se requiere agregar etiquetas en el mensaje de commit:
    "[deploy-stg]" → despliega en entorno de staging
 
    "[deploy-prod][approved]" → despliega en producción (solo si está aprobado)
+
+
+
+
+agregando cambios
